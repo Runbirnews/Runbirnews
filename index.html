@@ -13,7 +13,7 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f2f4f7;
+      background: #f3f5f7;
       color: #222;
     }
 
@@ -21,22 +21,21 @@
       background: #09264d;
       color: white;
       text-align: center;
-      padding: 28px 15px;
+      padding: 30px 15px;
     }
 
     header h1 {
       margin: 0;
-      font-size: 36px;
+      font-size: 34px;
     }
 
     header p {
-      margin: 8px 0 0;
-      color: #dce8f5;
+      margin: 10px 0 0;
     }
 
     nav {
       background: white;
-      padding: 14px;
+      padding: 15px;
       text-align: center;
       border-bottom: 1px solid #ddd;
     }
@@ -45,12 +44,11 @@
       color: #09264d;
       text-decoration: none;
       font-weight: bold;
-      margin: 5px 10px;
-      display: inline-block;
+      margin: 0 10px;
     }
 
-    .container {
-      max-width: 1050px;
+    main {
+      max-width: 1100px;
       margin: 25px auto;
       padding: 0 15px;
     }
@@ -58,9 +56,9 @@
     .welcome {
       background: white;
       padding: 25px;
-      border-radius: 14px;
+      border-radius: 15px;
       margin-bottom: 25px;
-      box-shadow: 0 3px 15px #00000012;
+      box-shadow: 0 3px 15px #0001;
     }
 
     .welcome h2 {
@@ -68,30 +66,29 @@
       margin-top: 0;
     }
 
-    .news-grid {
+    #news {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
     }
 
     .news-card {
       background: white;
       padding: 20px;
-      border-radius: 14px;
-      box-shadow: 0 3px 15px #00000012;
+      border-radius: 15px;
+      box-shadow: 0 3px 15px #0001;
     }
 
     .category {
       color: #c62828;
-      font-size: 14px;
       font-weight: bold;
-      margin-bottom: 8px;
+      font-size: 14px;
     }
 
     .news-card h3 {
       color: #09264d;
-      margin: 8px 0;
       font-size: 21px;
+      margin: 10px 0;
     }
 
     .date {
@@ -103,7 +100,7 @@
     .loading {
       background: white;
       padding: 25px;
-      border-radius: 14px;
+      border-radius: 15px;
       text-align: center;
     }
 
@@ -119,10 +116,6 @@
       header h1 {
         font-size: 28px;
       }
-
-      .news-card h3 {
-        font-size: 19px;
-      }
     }
   </style>
 </head>
@@ -131,7 +124,7 @@
 
 <header>
   <h1>📰 ڕوونبیر نیوز</h1>
-  <p>سەرچاوەی هەواڵ و زانیاریی نوێ</p>
+  <p>نوێترین هەواڵ و زانیاری</p>
 </header>
 
 <nav>
@@ -143,16 +136,14 @@
   <a href="#">کەلتوور</a>
 </nav>
 
-<main class="container">
+<main>
 
   <section class="welcome">
     <h2>بەخێربێیت بۆ ڕوونبیر نیوز</h2>
-    <p>
-      نوێترین هەواڵ و زانیارییەکان لێرە بخوێنەوە.
-    </p>
+    <p>ئەمە ماڵپەڕی ڕۆژنامەوانیی ڕوونبیر نیوزە.</p>
   </section>
 
-  <section id="news" class="news-grid">
+  <section id="news">
     <div class="loading">⏳ هەواڵەکان بار دەکرێن...</div>
   </section>
 
@@ -168,26 +159,32 @@
   const sheetUrl =
     `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json`;
 
+  function safe(value) {
+    return String(value || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
   async function loadNews() {
-    const newsContainer = document.getElementById("news");
+    const container = document.getElementById("news");
 
     try {
       const response = await fetch(sheetUrl);
       const text = await response.text();
 
-      const jsonText = text.substring(
-        text.indexOf("{"),
-        text.lastIndexOf("}") + 1
-      );
+      const start = text.indexOf("{");
+      const end = text.lastIndexOf("}") + 1;
 
-      const data = JSON.parse(jsonText);
+      const data = JSON.parse(text.substring(start, end));
+      const rows = data.table.rows || [];
 
-      newsContainer.innerHTML = "";
+      container.innerHTML = "";
 
-      const rows = data.table.rows;
-
-      if (!rows || rows.length === 0) {
-        newsContainer.innerHTML =
+      if (rows.length === 0) {
+        container.innerHTML =
           '<div class="loading">هیچ هەواڵێک نییە.</div>';
         return;
       }
@@ -195,10 +192,17 @@
       rows.reverse().forEach(row => {
         const cells = row.c || [];
 
-        const title = cells[0]?.v || "";
-        const category = cells[1]?.v || "";
-        const date = cells[2]?.v || "";
-        const newsText = cells[3]?.v || "";
+        // Forms response sheet:
+        // 0 = Timestamp
+        // 1 = ناونیشانی هەواڵ
+        // 2 = بەشی هەواڵ
+        // 3 = بەروار
+        // 4 = دەقی هەواڵ
+
+        const title = cells[1]?.v || "";
+        const category = cells[2]?.v || "";
+        const date = cells[3]?.v || "";
+        const newsText = cells[4]?.v || "";
 
         if (!title && !newsText) return;
 
@@ -206,28 +210,21 @@
         article.className = "news-card";
 
         article.innerHTML = `
-          <div class="category">${escapeHtml(category)}</div>
-          <h3>${escapeHtml(title)}</h3>
-          <p>${escapeHtml(newsText)}</p>
-          <div class="date">${escapeHtml(date)}</div>
+          <div class="category">${safe(category)}</div>
+          <h3>${safe(title)}</h3>
+          <p>${safe(newsText)}</p>
+          <div class="date">${safe(date)}</div>
         `;
 
-        newsContainer.appendChild(article);
+        container.appendChild(article);
       });
 
     } catch (error) {
-      newsContainer.innerHTML =
-        '<div class="loading">❌ نەمانتوانی هەواڵەکان بار بکەین.</div>';
-    }
-  }
+      console.error(error);
 
-  function escapeHtml(value) {
-    return String(value)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
+      container.innerHTML =
+        '<div class="loading">❌ کێشەیەک ڕوویدا لە بارکردنی هەواڵەکان.</div>';
+    }
   }
 
   loadNews();
