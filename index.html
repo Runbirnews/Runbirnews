@@ -1,169 +1,202 @@
 <!DOCTYPE html>
 <html lang="ku" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ڕوونبیر نیوز</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ڕوونبیر نیوز</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+* {
+  box-sizing: border-box;
+}
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f6f8;
-      color: #222;
-    }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f1f3f5;
+  color: #222;
+}
 
-    header {
-      background: #0b1f3a;
-      color: white;
-      padding: 25px 15px;
-      text-align: center;
-    }
+header {
+  background: #09264d;
+  color: white;
+  text-align: center;
+  padding: 28px 15px;
+}
 
-    header h1 {
-      margin: 0;
-      font-size: 34px;
-    }
+header h1 {
+  margin: 0;
+  font-size: 36px;
+}
 
-    header p {
-      margin: 8px 0 0;
-      color: #dbe7f5;
-    }
+header p {
+  margin: 8px 0 0;
+}
 
-    nav {
-      background: #ffffff;
-      padding: 12px;
-      text-align: center;
-      border-bottom: 1px solid #ddd;
-    }
+nav {
+  background: white;
+  text-align: center;
+  padding: 14px;
+  border-bottom: 1px solid #ddd;
+}
 
-    nav a {
-      color: #0b1f3a;
-      text-decoration: none;
-      margin: 0 10px;
-      font-weight: bold;
-    }
+nav a {
+  text-decoration: none;
+  color: #09264d;
+  font-weight: bold;
+  margin: 0 10px;
+}
 
-    .container {
-      max-width: 1000px;
-      margin: 25px auto;
-      padding: 0 15px;
-    }
+.container {
+  max-width: 1050px;
+  margin: 25px auto;
+  padding: 0 15px;
+}
 
-    .headline {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      margin-bottom: 20px;
-      box-shadow: 0 3px 12px #00000012;
-    }
+.main-news {
+  background: white;
+  padding: 25px;
+  border-radius: 14px;
+  margin-bottom: 25px;
+  box-shadow: 0 3px 15px #00000012;
+}
 
-    .headline h2 {
-      color: #c62828;
-      margin-top: 0;
-    }
+.main-news .tag {
+  color: #d62828;
+  font-weight: bold;
+}
 
-    .news {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 18px;
-    }
+.main-news h2 {
+  font-size: 28px;
+  margin: 10px 0;
+}
 
-    .card {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 3px 12px #00000012;
-    }
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
 
-    .card h3 {
-      color: #0b1f3a;
-    }
+.news-card {
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 3px 15px #00000012;
+}
 
-    .category {
-      color: #c62828;
-      font-size: 14px;
-      font-weight: bold;
-    }
+.news-card .tag {
+  color: #d62828;
+  font-size: 14px;
+  font-weight: bold;
+}
 
-    footer {
-      margin-top: 40px;
-      background: #0b1f3a;
-      color: white;
-      text-align: center;
-      padding: 20px;
-    }
+.news-card h3 {
+  color: #09264d;
+  margin-bottom: 10px;
+}
 
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 27px;
-      }
+.date {
+  color: #777;
+  font-size: 13px;
+}
 
-      nav a {
-        display: inline-block;
-        margin: 6px;
-      }
-    }
-  </style>
+footer {
+  margin-top: 40px;
+  background: #09264d;
+  color: white;
+  text-align: center;
+  padding: 25px;
+}
+
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 28px;
+  }
+
+  nav a {
+    display: inline-block;
+    margin: 6px;
+  }
+
+  .main-news h2 {
+    font-size: 23px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <h1>📰 ڕوونبیر نیوز</h1>
-    <p>سەرچاوەی هەواڵ و زانیاری</p>
-  </header>
+<header>
+  <h1>📰 ڕوونبیر نیوز</h1>
+  <p>سەرچاوەی هەواڵ و زانیاریی نوێ</p>
+</header>
 
-  <nav>
-    <a href="#">سەرەکی</a>
-    <a href="#">سیاسەت</a>
-    <a href="#">جیهان</a>
-    <a href="#">وەرزش</a>
-    <a href="#">ئابووری</a>
-    <a href="#">کەلتوور</a>
-  </nav>
+<nav>
+  <a href="#">سەرەکی</a>
+  <a href="#">سیاسەت</a>
+  <a href="#">جیهان</a>
+  <a href="#">وەرزش</a>
+  <a href="#">ئابووری</a>
+  <a href="#">کەلتوور</a>
+</nav>
 
-  <main class="container">
+<main class="container">
 
-    <section class="headline">
-      <div class="category">هەواڵی گرنگ</div>
-      <h2>بەخێربێیت بۆ ڕوونبیر نیوز</h2>
+  <section class="main-news">
+    <div class="tag">هەواڵی گرنگ</div>
+    <h2>بەخێربێیت بۆ ڕوونبیر نیوز</h2>
+    <p>
+      بەڵێنمان ئەوەیە هەواڵ و زانیاری بە شێوەیەکی ڕوون و ئاسان بگەیەنین.
+    </p>
+    <div class="date">ڕوونبیر نیوز</div>
+  </section>
+
+  <section class="news-grid">
+
+    <article class="news-card">
+      <div class="tag">سیاسەت</div>
+      <h3>نوێترین هەواڵی سیاسی</h3>
       <p>
-        لێرە دەتوانیت نوێترین هەواڵ و زانیارییەکان بڵاو بکەیتەوە.
+        لێرە دەتوانیت نوێترین هەواڵ و ڕووداوە سیاسییەکان بڵاو بکەیتەوە.
       </p>
-    </section>
+      <div class="date">ئەمڕۆ</div>
+    </article>
 
-    <section class="news">
+    <article class="news-card">
+      <div class="tag">جیهان</div>
+      <h3>هەواڵەکانی جیهان</h3>
+      <p>
+        گرنگترین ڕووداوەکانی جیهان لە ڕوونبیر نیوز بخوێنەوە.
+      </p>
+      <div class="date">ئەمڕۆ</div>
+    </article>
 
-      <article class="card">
-        <div class="category">سیاسەت</div>
-        <h3>هەواڵی سیاسی</h3>
-        <p>لێرە دەقی هەواڵی سیاسی دەنووسرێت.</p>
-      </article>
+    <article class="news-card">
+      <div class="tag">وەرزش</div>
+      <h3>نوێترین هەواڵی وەرزش</h3>
+      <p>
+        هەواڵ و ئەنجامەکانی تۆپی پێ و جۆرەکانی تری وەرزش.
+      </p>
+      <div class="date">ئەمڕۆ</div>
+    </article>
 
-      <article class="card">
-        <div class="category">جیهان</div>
-        <h3>هەواڵی جیهان</h3>
-        <p>لێرە دەتوانیت هەواڵە نوێکانی جیهان بڵاو بکەیتەوە.</p>
-      </article>
+    <article class="news-card">
+      <div class="tag">ئابووری</div>
+      <h3>هەواڵی ئابووری</h3>
+      <p>
+        نوێترین زانیارییە ئابوورییەکان و بازاڕەکان.
+      </p>
+      <div class="date">ئەمڕۆ</div>
+    </article>
 
-      <article class="card">
-        <div class="category">وەرزش</div>
-        <h3>نوێترین هەواڵی وەرزش</h3>
-        <p>لێرە هەواڵ و ئەنجامە وەرزشییەکان دادەنرێن.</p>
-      </article>
+  </section>
 
-    </section>
+</main>
 
-  </main>
-
-  <footer>
-    <p>© 2026 ڕوونبیر نیوز - هەموو مافەکان پارێزراون.</p>
-  </footer>
+<footer>
+  <p>© 2026 ڕوونبیر نیوز — هەموو مافەکان پارێزراون.</p>
+</footer>
 
 </body>
 </html>
