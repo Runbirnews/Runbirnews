@@ -74,9 +74,20 @@
 
     .news-card {
       background: white;
-      padding: 20px;
       border-radius: 15px;
+      overflow: hidden;
       box-shadow: 0 3px 15px #0001;
+    }
+
+    .news-image {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .news-content {
+      padding: 20px;
     }
 
     .category {
@@ -116,6 +127,10 @@
       header h1 {
         font-size: 28px;
       }
+
+      .news-image {
+        height: 200px;
+      }
     }
   </style>
 </head>
@@ -124,7 +139,7 @@
 
 <header>
   <h1>📰 ڕوونبیر نیوز</h1>
-  <p>نوێترین هەواڵ و زانیاری</p>
+  <p>نوێترین هەواڵ و زانیارییەکان لێرە بخوێنەوە.</p>
 </header>
 
 <nav>
@@ -140,7 +155,7 @@
 
   <section class="welcome">
     <h2>بەخێربێیت بۆ ڕوونبیر نیوز</h2>
-    <p>ئەمە ماڵپەڕی ڕۆژنامەوانیی ڕوونبیر نیوزە.</p>
+    <p>نوێترین هەواڵ و زانیارییەکان لێرە بخوێنەوە.</p>
   </section>
 
   <section id="news">
@@ -192,28 +207,33 @@
       rows.reverse().forEach(row => {
         const cells = row.c || [];
 
-        // Forms response sheet:
-        // 0 = Timestamp
-        // 1 = ناونیشانی هەواڵ
-        // 2 = بەشی هەواڵ
-        // 3 = بەروار
-        // 4 = دەقی هەواڵ
-
         const title = cells[1]?.v || "";
         const category = cells[2]?.v || "";
         const date = cells[3]?.v || "";
         const newsText = cells[4]?.v || "";
+        const image = cells[5]?.v || "";
 
         if (!title && !newsText) return;
+
+        const imageHtml = image
+          ? `<img class="news-image" src="${safe(image)}" alt="${safe(title)}">`
+          : "";
 
         const article = document.createElement("article");
         article.className = "news-card";
 
         article.innerHTML = `
-          <div class="category">${safe(category)}</div>
-          <h3>${safe(title)}</h3>
-          <p>${safe(newsText)}</p>
-          <div class="date">${safe(date)}</div>
+          ${imageHtml}
+
+          <div class="news-content">
+            <div class="category">${safe(category)}</div>
+
+            <h3>${safe(title)}</h3>
+
+            <p>${safe(newsText)}</p>
+
+            <div class="date">${safe(date)}</div>
+          </div>
         `;
 
         container.appendChild(article);
