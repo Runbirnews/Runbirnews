@@ -1,128 +1,130 @@
 <!DOCTYPE html>
 <html lang="ku" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ڕوونبیر نیوز</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ڕوونبیر نیوز</title>
 
-<style>
-* {
-  box-sizing: border-box;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f1f3f5;
-  color: #222;
-}
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f2f4f7;
+      color: #222;
+    }
 
-header {
-  background: #09264d;
-  color: white;
-  text-align: center;
-  padding: 28px 15px;
-}
+    header {
+      background: #09264d;
+      color: white;
+      text-align: center;
+      padding: 28px 15px;
+    }
 
-header h1 {
-  margin: 0;
-  font-size: 36px;
-}
+    header h1 {
+      margin: 0;
+      font-size: 36px;
+    }
 
-header p {
-  margin: 8px 0 0;
-}
+    header p {
+      margin: 8px 0 0;
+      color: #dce8f5;
+    }
 
-nav {
-  background: white;
-  text-align: center;
-  padding: 14px;
-  border-bottom: 1px solid #ddd;
-}
+    nav {
+      background: white;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
 
-nav a {
-  text-decoration: none;
-  color: #09264d;
-  font-weight: bold;
-  margin: 0 10px;
-}
+    nav a {
+      color: #09264d;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 5px 10px;
+      display: inline-block;
+    }
 
-.container {
-  max-width: 1050px;
-  margin: 25px auto;
-  padding: 0 15px;
-}
+    .container {
+      max-width: 1050px;
+      margin: 25px auto;
+      padding: 0 15px;
+    }
 
-.main-news {
-  background: white;
-  padding: 25px;
-  border-radius: 14px;
-  margin-bottom: 25px;
-  box-shadow: 0 3px 15px #00000012;
-}
+    .welcome {
+      background: white;
+      padding: 25px;
+      border-radius: 14px;
+      margin-bottom: 25px;
+      box-shadow: 0 3px 15px #00000012;
+    }
 
-.main-news .tag {
-  color: #d62828;
-  font-weight: bold;
-}
+    .welcome h2 {
+      color: #c62828;
+      margin-top: 0;
+    }
 
-.main-news h2 {
-  font-size: 28px;
-  margin: 10px 0;
-}
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 20px;
+    }
 
-.news-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-}
+    .news-card {
+      background: white;
+      padding: 20px;
+      border-radius: 14px;
+      box-shadow: 0 3px 15px #00000012;
+    }
 
-.news-card {
-  background: white;
-  padding: 20px;
-  border-radius: 14px;
-  box-shadow: 0 3px 15px #00000012;
-}
+    .category {
+      color: #c62828;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
 
-.news-card .tag {
-  color: #d62828;
-  font-size: 14px;
-  font-weight: bold;
-}
+    .news-card h3 {
+      color: #09264d;
+      margin: 8px 0;
+      font-size: 21px;
+    }
 
-.news-card h3 {
-  color: #09264d;
-  margin-bottom: 10px;
-}
+    .date {
+      color: #777;
+      font-size: 13px;
+      margin-top: 15px;
+    }
 
-.date {
-  color: #777;
-  font-size: 13px;
-}
+    .loading {
+      background: white;
+      padding: 25px;
+      border-radius: 14px;
+      text-align: center;
+    }
 
-footer {
-  margin-top: 40px;
-  background: #09264d;
-  color: white;
-  text-align: center;
-  padding: 25px;
-}
+    footer {
+      margin-top: 40px;
+      background: #09264d;
+      color: white;
+      text-align: center;
+      padding: 25px;
+    }
 
-@media (max-width: 600px) {
-  header h1 {
-    font-size: 28px;
-  }
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 28px;
+      }
 
-  nav a {
-    display: inline-block;
-    margin: 6px;
-  }
-
-  .main-news h2 {
-    font-size: 23px;
-  }
-}
-</style>
+      .news-card h3 {
+        font-size: 19px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -143,60 +145,93 @@ footer {
 
 <main class="container">
 
-  <section class="main-news">
-    <div class="tag">هەواڵی گرنگ</div>
+  <section class="welcome">
     <h2>بەخێربێیت بۆ ڕوونبیر نیوز</h2>
     <p>
-      بەڵێنمان ئەوەیە هەواڵ و زانیاری بە شێوەیەکی ڕوون و ئاسان بگەیەنین.
+      نوێترین هەواڵ و زانیارییەکان لێرە بخوێنەوە.
     </p>
-    <div class="date">ڕوونبیر نیوز</div>
   </section>
 
-  <section class="news-grid">
-
-    <article class="news-card">
-      <div class="tag">سیاسەت</div>
-      <h3>نوێترین هەواڵی سیاسی</h3>
-      <p>
-        لێرە دەتوانیت نوێترین هەواڵ و ڕووداوە سیاسییەکان بڵاو بکەیتەوە.
-      </p>
-      <div class="date">ئەمڕۆ</div>
-    </article>
-
-    <article class="news-card">
-      <div class="tag">جیهان</div>
-      <h3>هەواڵەکانی جیهان</h3>
-      <p>
-        گرنگترین ڕووداوەکانی جیهان لە ڕوونبیر نیوز بخوێنەوە.
-      </p>
-      <div class="date">ئەمڕۆ</div>
-    </article>
-
-    <article class="news-card">
-      <div class="tag">وەرزش</div>
-      <h3>نوێترین هەواڵی وەرزش</h3>
-      <p>
-        هەواڵ و ئەنجامەکانی تۆپی پێ و جۆرەکانی تری وەرزش.
-      </p>
-      <div class="date">ئەمڕۆ</div>
-    </article>
-
-    <article class="news-card">
-      <div class="tag">ئابووری</div>
-      <h3>هەواڵی ئابووری</h3>
-      <p>
-        نوێترین زانیارییە ئابوورییەکان و بازاڕەکان.
-      </p>
-      <div class="date">ئەمڕۆ</div>
-    </article>
-
+  <section id="news" class="news-grid">
+    <div class="loading">⏳ هەواڵەکان بار دەکرێن...</div>
   </section>
 
 </main>
 
 <footer>
-  <p>© 2026 ڕوونبیر نیوز — هەموو مافەکان پارێزراون.</p>
+  <p>© 2026 ڕوونبیر نیوز</p>
 </footer>
+
+<script>
+  const sheetId = "1a55TvoEs4MrGeCZDNf81we9cmYYT37JfD72ftybYC5g";
+
+  const sheetUrl =
+    `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json`;
+
+  async function loadNews() {
+    const newsContainer = document.getElementById("news");
+
+    try {
+      const response = await fetch(sheetUrl);
+      const text = await response.text();
+
+      const jsonText = text.substring(
+        text.indexOf("{"),
+        text.lastIndexOf("}") + 1
+      );
+
+      const data = JSON.parse(jsonText);
+
+      newsContainer.innerHTML = "";
+
+      const rows = data.table.rows;
+
+      if (!rows || rows.length === 0) {
+        newsContainer.innerHTML =
+          '<div class="loading">هیچ هەواڵێک نییە.</div>';
+        return;
+      }
+
+      rows.reverse().forEach(row => {
+        const cells = row.c || [];
+
+        const title = cells[0]?.v || "";
+        const category = cells[1]?.v || "";
+        const date = cells[2]?.v || "";
+        const newsText = cells[3]?.v || "";
+
+        if (!title && !newsText) return;
+
+        const article = document.createElement("article");
+        article.className = "news-card";
+
+        article.innerHTML = `
+          <div class="category">${escapeHtml(category)}</div>
+          <h3>${escapeHtml(title)}</h3>
+          <p>${escapeHtml(newsText)}</p>
+          <div class="date">${escapeHtml(date)}</div>
+        `;
+
+        newsContainer.appendChild(article);
+      });
+
+    } catch (error) {
+      newsContainer.innerHTML =
+        '<div class="loading">❌ نەمانتوانی هەواڵەکان بار بکەین.</div>';
+    }
+  }
+
+  function escapeHtml(value) {
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  loadNews();
+</script>
 
 </body>
 </html>
